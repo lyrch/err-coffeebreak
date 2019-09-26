@@ -1,0 +1,14 @@
+[Core]
+name = err-coffeebreak
+module = err-coffeebreak
+
+[Documentation]
+description = Used to schedule and notify team members of coffee breaks
+
+[Python]
+version = 3
+
+[Errbot]
+min = 6.0.0
+max = 6.0.0
+
