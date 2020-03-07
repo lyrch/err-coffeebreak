@@ -1,5 +1,5 @@
 from errbot import BotPlugin, botcmd, arg_botcmd, webhook
-import parsedatetime, time
+#import parsedatetime, time
 
 DEFAULT_INTERVAL = 30  # One minute
 DEFAULT_LOCAL    = 'en_US'
@@ -64,8 +64,9 @@ class CoffeeBreak(BotPlugin):
     # of whitespace, just like Python's split() does
     @botcmd
     def coffeebreak(self, message, args):
-        self.start_coffeebreak()
-        self.start_timer()
+        return "Time for a coffeebreak!"
+        #self.start_coffeebreak()
+        #self.start_timer()
 
     def start_coffeebreak(self):
         self.send("It's time for a coffeebreak! {break_room}".format(break_room=self.config["BREAK_ROOM"]))

@@ -1,6 +1,6 @@
 [Core]
 name = err-coffeebreak
-module = err-coffeebreak
+module = coffeebreak
 
 [Documentation]
 description = Used to schedule and notify team members of coffee breaks
@@ -10,5 +10,4 @@ version = 3
 
 [Errbot]
 min = 6.0.0
-max = 6.0.0
 
