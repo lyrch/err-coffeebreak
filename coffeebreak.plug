@@ -1,5 +1,5 @@
 [Core]
-name = err-coffeebreak
+name = CoffeeBreak
 module = coffeebreak
 
 [Documentation]

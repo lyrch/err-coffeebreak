@@ -1,7 +1,8 @@
 from errbot import BotPlugin, botcmd, arg_botcmd, webhook
-#import parsedatetime, time
+import dateparser, time
 
 DEFAULT_INTERVAL = 30  # One minute
+DEFAULT_BREAK_ROOM = 'break room'
 DEFAULT_LOCAL    = 'en_US'
 
 
@@ -32,7 +33,7 @@ class CoffeeBreak(BotPlugin):
         Defines the configuration structure this plugin supports
         You should delete it if your plugin doesn't use any configuration like this
         """
-        return {'BREAK_ROOM': "SETME",
+        return {'BREAK_ROOM': DEFAULT_BREAK_ROOM,
                 'TEAM_MEMBERS': None,
                 'INTERVAL': DEFAULT_INTERVAL
                 }
@@ -65,13 +66,16 @@ class CoffeeBreak(BotPlugin):
     @botcmd
     def coffeebreak(self, message, args):
         return "Time for a coffeebreak!"
-        #self.start_coffeebreak()
-        #self.start_timer()
-
-    def start_coffeebreak(self):
-        self.send("It's time for a coffeebreak! {break_room}".format(break_room=self.config["BREAK_ROOM"]))
+        self.start_coffeebreak()
         self.start_timer()
 
+    def start_coffeebreak(self):
+        message = "It's time for a coffeebreak! {break_room}".format(break_room=self.config["BREAK_ROOM"])
+        yield message
+        #self.start_timer()
+
     def start_timer(self):
-        cal = parsedatetime.Calendar()
-        cal.parse("{interval} min".format(interval=self.config["INTERVAL"]))
+        stop_time = dateparser.parse("in {interval} minutes".format(interval=self.config["INTERVAL"]))
+        print("Stop time is {stop}".format(time=stop_time))
+        yield "Stop time is {stop}".format(time=stop_time)
+
