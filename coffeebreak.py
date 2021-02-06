@@ -48,13 +48,6 @@ class CoffeeBreak(BotPlugin):
         """
         super(CoffeeBreak, self).check_configuration(configuration)
 
-    def callback_connect(self):
-        """
-        Triggers when bot is connected
-
-        You should delete it if you're not using it to override any default behaviour
-        """
-        pass
 
     @webhook
     def example_webhook(self, incoming_request):
@@ -71,6 +64,7 @@ class CoffeeBreak(BotPlugin):
 
     def start_coffeebreak(self):
         message = "It's time for a coffeebreak! {break_room}".format(break_room=self.config["BREAK_ROOM"])
+        #message = "It's time for a coffeebreak! {break_room}".format(break_room='break room')
         yield message
         #self.start_timer()
 
