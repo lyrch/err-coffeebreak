@@ -21,13 +21,6 @@ class CoffeeBreak(BotPlugin):
         # interval = {True: self.config['INTERVAL'], False: DEFAULT_INTERVAL}[self.config]
         # self.start_poller(interval, self.coffeebreak)
 
-    def deactivate(self):
-        """
-        Triggers on plugin deactivation
-        You should delete it if you're not using it to override any default behaviour
-        """
-        super(CoffeeBreak, self).deactivate()
-
     def get_configuration_template(self):
         """
         Defines the configuration structure this plugin supports
@@ -37,6 +30,18 @@ class CoffeeBreak(BotPlugin):
                 'TEAM_MEMBERS': None,
                 'INTERVAL': DEFAULT_INTERVAL
                 }
+
+    def configure(self, configuration):
+        config_template = self.get_configuration_template()
+
+        if configuration is not None and configuration != {}:
+            config = dict(chain(config_template.items(),
+                                 configuration.items()))
+        else:
+            config = config_template
+
+        self.config = config
+
 
     def check_configuration(self, configuration):
         """
